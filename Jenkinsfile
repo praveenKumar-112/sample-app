@@ -40,5 +40,22 @@ pipeline {
                 }
             }
         }
+        stage('Deploy Container') {
+            steps {
+                script {
+                    echo "Deploying Docker container..."
+                    sh '''
+                        # Stop and remove existing container if it’s running
+                        docker rm -f sample-app-container || true
+
+                        # Pull the latest image from ECR
+                        docker pull 484395054942.dkr.ecr.ap-south-1.amazonaws.com/sample-app:latest
+
+                        # Run the container on port 3000
+                        docker run -d --name sample-app-container -p 3000:3000 484395054942.dkr.ecr.ap-south-1.amazonaws.com/sample-app:latest
+                    '''
+                }
+            }
+        }
     }
 }
