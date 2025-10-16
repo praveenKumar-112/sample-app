@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         AWS_REGION = 'ap-south-1'
-        ECR_REPO = '484395054942.dkr.ecr.ap-south-1.amazonaws.com/sample-app'
+        ECR_REPO = '484395054942.dkr.ecr.ap-south-1.amazonaws.com/simple-app'
         IMAGE_TAG = "latest"
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/praveenKumar-112/sample-app.git'
+                git branch: 'main', url: 'https://github.com/praveenKumar-112/simple-app.git'
             }
         }
 
